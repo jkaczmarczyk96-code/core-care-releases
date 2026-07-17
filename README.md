@@ -1,119 +1,184 @@
-# CoreCare
+<div align="center">
+  <img src="assets/corecare-logo.png" width="150" alt="CoreCare logo">
+  <h1>CoreCare</h1>
+  <p><strong>Understand your computer. Clean it carefully. Keep recovery within reach.</strong></p>
+  <p>
+    <a href="https://github.com/jkaczmarczyk96-code/core-care-releases/releases"><img alt="Downloads" src="https://img.shields.io/badge/Download-Windows%20%7C%20Linux-087DD1?style=for-the-badge"></a>
+    <img alt="Beta" src="https://img.shields.io/badge/status-free%20beta-00AFA5?style=for-the-badge">
+    <img alt="Languages" src="https://img.shields.io/badge/UI-English%20%7C%20Czech-49368C?style=for-the-badge">
+  </p>
+  <p><a href="README.cs.md">Česká verze</a> · English</p>
+</div>
 
-**A safety-first Windows health and cleanup application.**
+CoreCare is a safety-first desktop health application for people who want a
+cleaner and healthier computer without trusting a one-click tool to make risky
+decisions. It combines guided cleanup, disk diagnostics, startup management,
+updates, privacy controls, and performance monitoring in one approachable app.
 
-[Čeština](README.cs.md) | English
+CoreCare scans and explains first. Nothing is cleaned, repaired, disabled, or
+updated until the user reviews and approves the action.
 
-CoreCare helps people understand what occupies their storage, review low-risk cleanup candidates, maintain Windows, and monitor common health signals without blindly deleting files or changing the system without approval.
+> **Free beta:** CoreCare is under active development. Keep backups of important
+> data and review proposed system changes before confirming them.
 
-> CoreCare is currently a free beta. The Windows version is under active development and should be used with the same care as other system maintenance software.
+## Download CoreCare
 
-## Download
+All official installers and update packages are available on the
+**[Releases page](https://github.com/jkaczmarczyk96-code/core-care-releases/releases)**.
 
-Open the [CoreCare Releases](https://github.com/jkaczmarczyk96-code/core-care-releases/releases) page and download:
+| Platform | Recommended download | Current public beta | Notes |
+| --- | --- | --- | --- |
+| Windows 10/11 x64 | `CoreCare-win-Setup.exe` | `0.1.0-beta.80` | Standard installer with Velopack updates. A portable ZIP is also available for testing. |
+| Linux x64 | `CoreCare.AppImage` | `0.1.0-beta.87-linux` | Self-contained AppImage with a dedicated Linux update channel. |
 
-- **`CoreCare-win-Setup.exe`** - recommended Windows installer with automatic updates.
-- **`CoreCare-win-Portable.zip`** - portable build intended mainly for testing.
-- **`.nupkg`, `RELEASES`, and `releases.win.json`** - Velopack update files used by CoreCare; users do not need to open them manually.
+### Run on Linux
 
-The current public beta is available from the [beta.80 release](https://github.com/jkaczmarczyk96-code/core-care-releases/releases/tag/v0.1.0-beta.80).
+After downloading the AppImage, mark it as executable and start it:
 
-## Current features
+```bash
+chmod +x CoreCare.AppImage
+./CoreCare.AppImage
+```
+
+Files ending in `.nupkg`, `RELEASES`, or `releases.*.json` are update metadata
+used automatically by CoreCare. Normal users do not need to download or open
+them manually.
+
+## Features
 
 ### Smart Cleaner
 
-- Scans a selected fixed drive.
-- Finds large files, old temporary data, caches, installers, archives, disk images, and folders containing many small files.
-- Classifies every result by context and risk.
-- Protects Windows locations, installed applications, game installations, saves, and personal data.
+- Scans one drive or all fixed drives.
+- Finds large files, old temporary data, archives, disk images, caches, and
+  directories containing many small files.
+- Evaluates every result by context, location, ownership, age, size, and risk.
+- Protects operating-system paths, installed applications, game libraries,
+  saves, configuration data, and personal files.
 - Automatically selects only conservative low-risk candidates.
-- Moves approved files to the Recycle Bin instead of permanently deleting them.
-- Supports sorting, filtering, individual selection, removal review, and progress reporting.
+- Explains why an item was found and shows the proposed action before cleanup.
+- Uses Recycle Bin on Windows and desktop Trash on Linux wherever possible.
+- Includes sorting, filtering, individual selection, review, and live progress.
 
-### Disk Health
+### Disk Health and repair
 
-- Shows used and available space for fixed drives.
-- Provides read-only file-system checks with in-app progress and results.
-- Offers guided access to Windows file repair, image repair, drive optimization, and storage settings.
-- Keeps administrative actions explicit and user-approved.
+- Shows used space, free space, file-system type, and capacity pressure.
+- Provides guided disk checks with progress and results inside CoreCare.
+- Detects common storage and file-system warning signals.
+- Offers platform-appropriate repair and storage tools.
+- On Linux, supports device details, temperature where available, TRIM
+  capability, SMART checks, Btrfs status, and capacity trends.
+- On Linux, can verify package-managed system files and repair package
+  dependencies using trusted distribution tools.
+- Keeps privileged and potentially disruptive actions explicit.
 
 ### Startup
 
-- Detects applications launched with Windows.
-- Measures current CPU and memory use of running startup applications.
-- Highlights resource-heavy background applications.
-- Supports reversible enable and disable actions where Windows permits them.
+- Detects applications configured to run when the user signs in.
+- Measures CPU and memory use of startup applications currently running in the
+  background.
+- Highlights applications that cross conservative resource thresholds.
+- Supports reversible enable and disable actions where the platform permits.
+- Never disables an application automatically.
 
-### Driver and system updates
+### Updates and recovery
+
+**Windows**
 
 - Detects available driver updates through Windows Update.
-- Allows users to select driver updates directly in CoreCare.
-- Creates a local driver backup before installation.
-- Downloads and installs selected drivers through a hidden elevated CoreCare worker.
-- Displays update progress, completion status, and restart requirements in the application.
-- Shows recent Windows Update history and pending restart status.
+- Creates a local driver backup before installing selected drivers.
+- Shows installation progress, completion, restart state, and update history.
+
+**Linux**
+
+- Discovers system, kernel, firmware, and driver packages through APT, DNF,
+  Pacman, or Zypper.
+- Creates package restore points before selected updates.
+- Requires a verified rollback source for every package before an in-app update
+  proceeds.
+- Provides compatible rollback actions and package-manager history.
 
 ### Privacy
 
-- Smart Cookie Cleanup is disabled by default.
-- Detects old website cookies in supported Chromium browsers and Firefox.
-- Allows per-domain selection instead of deleting all browser data.
-- Creates a browser database backup before removal.
+- Smart Cookie Cleanup is opt-in.
+- Detects supported Chromium-family and Firefox browser profiles.
+- Groups cookies by domain and lets the user choose individual sites.
+- Refuses to modify an active browser profile.
+- Creates a local browser database backup before removal and supports restore.
+- Leaves unselected cookies and browsing history untouched.
 
-### Performance
+### Performance and overview
 
-- Measures current system CPU and memory use.
-- Lists applications with meaningful background resource use.
-- Links to Task Manager, power settings, and startup controls for informed action.
+- Displays live CPU, memory, process, storage, and application health signals.
+- Highlights meaningful background resource use instead of listing every
+  process as a problem.
+- Brings cleaner, storage, startup, update, privacy, and performance status into
+  one overview.
+- Keeps a local history of cleanup and maintenance actions.
+- Includes English and Czech interfaces, an in-app changelog, and update alerts.
 
-## Safety principles
+## How CoreCare stays careful
 
-CoreCare is designed around a few strict rules:
+1. **Scan locally** without changing the computer.
+2. **Explain the finding** and its risk in understandable language.
+3. **Ask for review** before cleanup, repair, update, or startup changes.
+4. **Block protected locations** belonging to the operating system and apps.
+5. **Prefer recovery paths** such as Trash, backups, and package restore points.
 
-1. Nothing is removed or repaired without user approval.
-2. Windows and application integrity take priority over reclaimed space.
-3. Uncertain files are shown for review, not selected automatically.
-4. Cleanup uses the Recycle Bin wherever possible.
-5. Driver installation starts only after a local backup succeeds.
-6. Privacy tools are opt-in and operate on selected domains only.
-
-CoreCare intentionally avoids registry cleaning, one-click system modification, and indiscriminate deletion of browser history or cookies.
-
-## Requirements
-
-- Windows 10 or Windows 11, 64-bit.
-- Internet connection for application and driver update checks.
-- Administrator approval for driver installation and protected Windows repair operations.
-
-The installer is self-contained; users do not need to install the .NET SDK or runtime separately.
-
-## Updates
-
-Installed builds use [Velopack](https://velopack.io/) to check this public repository for new CoreCare releases. Update packages are downloaded only after the user chooses to update, and installation is handled by the installed CoreCare updater.
-
-Starting with beta.81, official release builds are obfuscated before packaging and the release pipeline requires a valid Windows code signature. Code signing improves authenticity and tamper detection; it does not make reverse engineering impossible.
+CoreCare intentionally avoids registry cleaning, indiscriminate cookie or
+history deletion, and one-click system modification.
 
 ## Privacy
 
-CoreCare does not currently require an account, subscription, advertising identifier, or analytics service. Scan findings and maintenance results remain on the local computer. Online connections are used for GitHub release checks and Windows Update operations requested by the user.
+CoreCare does not currently require an account, subscription, advertising
+identifier, or analytics service. File inventories, scan findings, and activity
+history stay on the local computer. Online connections are used for update
+checks and operating-system update operations requested by the user.
 
-See [PRIVACY.md](PRIVACY.md) for details.
+See [PRIVACY.md](PRIVACY.md) for the complete privacy notes.
 
-## Beta limitations
+## Automatic application updates
 
-- The current release targets Windows only.
-- macOS and Linux versions are planned but require platform-specific storage, update, startup, and repair implementations.
-- Mobile operating systems impose stricter sandbox limitations and are not part of the current desktop beta.
-- Hardware diagnostics, per-device driver rollback, installed-application uninstall guidance, and game library/save detection will continue to evolve.
+CoreCare uses [Velopack](https://velopack.io/) and this public repository as its
+official update channel. Installed copies can check for a new release, display
+release notes, download the correct platform package, and restart into the
+update. Windows and Linux use separate update feeds so packages cannot be mixed
+between platforms.
+
+## Platform status
+
+| Area | Windows | Linux |
+| --- | :---: | :---: |
+| Guided cleanup and protected paths | Available | Available |
+| Disk capacity and health guidance | Available | Available |
+| Startup discovery and resource use | Available | Available |
+| Driver or system package updates | Available | Available |
+| Local pre-update recovery | Driver backup | Package restore point |
+| Smart Cookie Cleanup with backup | Available | Available |
+| Czech and English interface | Available | Available |
+
+The Linux beta is validated automatically on Ubuntu 22.04 and 24.04. Support for
+other distributions depends on their desktop integration and availability of
+APT, DNF, Pacman, or Zypper tools. macOS is planned as a separate native
+implementation; mobile platforms are not part of the current desktop beta.
 
 ## Support and security
 
-- For normal bugs and feature requests, use [GitHub Issues](https://github.com/jkaczmarczyk96-code/core-care-releases/issues).
-- For security-sensitive reports, follow [SECURITY.md](SECURITY.md) and do not post credentials, private files, or exploit details in a public issue.
-- Include the CoreCare version, Windows version, affected module, and reproduction steps when reporting a problem.
+- Report normal bugs and feature requests through
+  [GitHub Issues](https://github.com/jkaczmarczyk96-code/core-care-releases/issues).
+- For security-sensitive reports, follow [SECURITY.md](SECURITY.md).
+- Include the CoreCare version, operating system, affected module, and steps to
+  reproduce the problem.
+- Never attach credentials, private documents, cookie databases, or personal
+  scan results to a public issue.
 
-## Source and licensing
+## About this repository
 
-This repository is the official public binary release channel. The CoreCare source repository is private. No source-code license is granted by the presence of downloadable binaries in this repository.
+This is the official public binary and update repository for CoreCare. The
+application source repository is private. GitHub may automatically display
+source archives for repository tags; those archives contain only the public
+release-repository files and are not the private CoreCare application source.
+
+No source-code license is granted by the presence of downloadable binaries in
+this repository.
 
 Copyright © CoreCare contributors. All rights reserved.

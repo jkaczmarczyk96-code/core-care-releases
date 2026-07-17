@@ -1,117 +1,186 @@
-# CoreCare
+<div align="center">
+  <img src="assets/corecare-logo.png" width="150" alt="Logo CoreCare">
+  <h1>CoreCare</h1>
+  <p><strong>Pochopte svůj počítač. Čistěte bezpečně. Mějte cestu zpět.</strong></p>
+  <p>
+    <a href="https://github.com/jkaczmarczyk96-code/core-care-releases/releases"><img alt="Stažení" src="https://img.shields.io/badge/Stáhnout-Windows%20%7C%20Linux-087DD1?style=for-the-badge"></a>
+    <img alt="Beta" src="https://img.shields.io/badge/stav-beta%20zdarma-00AFA5?style=for-the-badge">
+    <img alt="Jazyky" src="https://img.shields.io/badge/UI-Čeština%20%7C%20English-49368C?style=for-the-badge">
+  </p>
+  <p>Čeština · <a href="README.md">English version</a></p>
+</div>
 
-**Bezpečná aplikace pro zdraví a čištění Windows.**
+CoreCare je bezpečnostně zaměřená aplikace pro zdraví počítače. Je určená
+uživatelům, kteří chtějí získat více volného místa a udržovat systém v dobrém
+stavu, ale nechtějí svěřit důležitá rozhodnutí slepému čištění jedním kliknutím.
+Spojuje chytré čištění, diagnostiku disků, správu aplikací po spuštění,
+aktualizace, ochranu soukromí a sledování výkonu do jedné přehledné aplikace.
 
-Čeština | [English](README.md)
+CoreCare nejprve skenuje a vysvětluje. Bez kontroly a potvrzení uživatele nic
+nemaže, neopravuje, nevypíná ani neaktualizuje.
 
-CoreCare pomáhá uživatelům pochopit, co zabírá místo na disku, kontrolovat bezpečné kandidáty k vyčištění, udržovat Windows a sledovat běžné ukazatele zdraví počítače. Soubory nemaže naslepo a systém nemění bez potvrzení.
+> **Beta zdarma:** CoreCare je stále ve vývoji. Důležitá data mějte zálohovaná a
+> před potvrzením vždy zkontrolujte navržené systémové změny.
 
-> CoreCare je momentálně bezplatná beta. Windows verze je aktivně vyvíjena a je vhodné s ní zacházet stejně opatrně jako s ostatními nástroji pro údržbu systému.
+## Stažení CoreCare
 
-## Stažení
+Všechny oficiální instalátory a aktualizační balíčky najdete na stránce
+**[Releases](https://github.com/jkaczmarczyk96-code/core-care-releases/releases)**.
 
-Otevřete stránku [CoreCare Releases](https://github.com/jkaczmarczyk96-code/core-care-releases/releases) a stáhněte:
+| Platforma | Doporučený soubor | Aktuální veřejná beta | Poznámka |
+| --- | --- | --- | --- |
+| Windows 10/11 x64 | `CoreCare-win-Setup.exe` | `0.1.0-beta.80` | Běžný instalátor s aktualizacemi přes Velopack. Pro testování je dostupná také portable ZIP verze. |
+| Linux x64 | `CoreCare.AppImage` | `0.1.0-beta.87-linux` | Samostatný AppImage s vlastním linuxovým aktualizačním kanálem. |
 
-- **`CoreCare-win-Setup.exe`** - doporučený instalátor Windows s automatickými aktualizacemi.
-- **`CoreCare-win-Portable.zip`** - přenosná verze určená především pro testování.
-- **`.nupkg`, `RELEASES` a `releases.win.json`** - technické soubory aktualizačního systému Velopack; uživatel je nemusí ručně otevírat.
+### Spuštění na Linuxu
 
-Aktuální veřejná beta je dostupná na stránce [beta.80](https://github.com/jkaczmarczyk96-code/core-care-releases/releases/tag/v0.1.0-beta.80).
+Po stažení nastavte AppImage jako spustitelný a otevřete jej:
 
-## Aktuální funkce
+```bash
+chmod +x CoreCare.AppImage
+./CoreCare.AppImage
+```
+
+Soubory s příponou `.nupkg`, `RELEASES` nebo `releases.*.json` jsou metadata pro
+automatické aktualizace. Běžný uživatel je nemusí stahovat ani ručně otevírat.
+
+## Funkce
 
 ### Smart Cleaner
 
-- Sken vybraného pevného disku.
-- Hledání velkých souborů, starých dočasných dat, cache, instalátorů, archivů, obrazů disků a složek s mnoha malými soubory.
-- Klasifikace každého nálezu podle kontextu a rizika.
-- Ochrana umístění Windows, nainstalovaných aplikací, her, uložených pozic a osobních dat.
-- Automatický výběr pouze konzervativních položek s nízkým rizikem.
-- Přesun schválených položek do Koše namísto trvalého odstranění.
-- Řazení, filtrování, jednotlivý výběr, závěrečná kontrola a průběh mazání.
+- Skenuje jeden vybraný disk nebo všechny pevné disky.
+- Nachází velké soubory, stará dočasná data, archivy, obrazy disků, cache a
+  složky obsahující velké množství malých souborů.
+- Posuzuje každý výsledek podle kontextu, umístění, vlastníka, stáří, velikosti a
+  rizika.
+- Chrání systémová umístění, nainstalované aplikace, herní knihovny, uložené
+  pozice, konfigurace a osobní soubory.
+- Automaticky vybírá pouze konzervativní kandidáty s nízkým rizikem.
+- Před čištěním vysvětlí důvod nálezu a navrhovanou akci.
+- Kde je to možné, používá Koš ve Windows a systémový Koš na Linuxu.
+- Nabízí řazení, filtrování, samostatný výběr, kontrolu před odstraněním a průběh
+  operace.
 
-### Zdraví disku
+### Zdraví disků a opravy
 
-- Přehled využitého a volného místa pevných disků.
-- Kontrola souborového systému pouze pro čtení s průběhem a výsledkem přímo v aplikaci.
-- Průvodci opravou souborů Windows, obrazu systému, optimalizací disků a nastavením úložiště.
-- Administrátorské akce jsou vždy zřetelné a vyžadují potvrzení.
+- Zobrazuje využité a volné místo, souborový systém a tlak na kapacitu.
+- Nabízí vedené kontroly disků s průběhem a výsledkem přímo v CoreCare.
+- Rozpoznává běžné varovné signály úložiště a souborového systému.
+- Otevírá vhodné opravné a úložné nástroje podle platformy.
+- Na Linuxu sleduje zařízení, dostupnou teplotu, podporu TRIM, SMART stav,
+  Btrfs kontroly a vývoj zaplnění disku.
+- Na Linuxu umí ověřit soubory spravované balíčkovacím systémem a opravit
+  závislosti pomocí důvěryhodných nástrojů distribuce.
+- Privilegované a potenciálně rušivé akce vždy vyžadují výslovné spuštění.
 
 ### Po spuštění
 
-- Detekce aplikací spouštěných s Windows.
-- Měření aktuální spotřeby procesoru a paměti běžících startup aplikací.
-- Upozornění na náročné aplikace na pozadí.
-- Vratné zapnutí a vypnutí položek tam, kde to Windows dovoluje.
+- Nachází aplikace nastavené ke spuštění po přihlášení uživatele.
+- Měří aktuální využití procesoru a paměti u běžících aplikací na pozadí.
+- Zvýrazňuje aplikace překračující konzervativní hranice spotřeby prostředků.
+- U podporovaných položek nabízí vratné zapnutí a vypnutí.
+- Nikdy žádnou aplikaci nevypne automaticky.
 
-### Ovladače a systémové aktualizace
+### Aktualizace a obnovení
 
-- Detekce dostupných aktualizací ovladačů přes Windows Update.
-- Výběr ovladačů a spuštění aktualizace přímo z CoreCare.
-- Automatická lokální záloha ovladačů před instalací.
-- Stažení a instalace vybraných ovladačů pomocí skrytého zvýšeného procesu CoreCare.
-- Průběh, výsledek a požadavek na restart přímo v aplikaci.
-- Historie Windows Update a stav čekajícího restartu.
+**Windows**
+
+- Vyhledává dostupné aktualizace ovladačů přes Windows Update.
+- Před instalací vybraných ovladačů vytváří jejich místní zálohu.
+- Zobrazuje průběh instalace, výsledek, nutnost restartu a historii aktualizací.
+
+**Linux**
+
+- Vyhledává systémové balíčky, jádro, firmware a ovladače přes APT, DNF, Pacman
+  nebo Zypper.
+- Před vybranými aktualizacemi vytváří body obnovy balíčků.
+- Aktualizaci spustí pouze tehdy, když má každý vybraný balíček ověřený zdroj pro
+  případný návrat.
+- Nabízí podporované obnovení předchozí verze a historii balíčkovacího systému.
 
 ### Soukromí
 
-- Chytré čištění cookies je ve výchozím stavu vypnuté.
-- Detekce starých cookies v podporovaných Chromium prohlížečích a Firefoxu.
-- Výběr jednotlivých domén namísto smazání všech dat prohlížeče.
-- Záloha databáze prohlížeče před odstraněním.
+- Smart Cookie Cleanup je volitelný a ve výchozím stavu vypnutý.
+- Rozpoznává podporované profily prohlížečů založených na Chromiu a Firefoxu.
+- Seskupuje cookies podle domén a umožňuje výběr jednotlivých webů.
+- Odmítne upravit profil, pokud je daný prohlížeč spuštěný.
+- Před odstraněním vytváří místní zálohu databáze a umožňuje její obnovení.
+- Nechá nedotčené nevybrané cookies i historii prohlížení.
 
-### Výkon
+### Výkon a přehled zdraví
 
-- Měření aktuálního využití procesoru a paměti.
-- Seznam aplikací s významnou spotřebou prostředků na pozadí.
-- Přímý přístup ke Správci úloh, nastavení napájení a aplikacím po spuštění.
+- Zobrazuje živé údaje o procesoru, paměti, procesech, úložišti a aplikacích.
+- Upozorňuje na významnou spotřebu prostředků místo označení každého procesu za
+  problém.
+- Spojuje stav čištění, úložiště, aplikací po spuštění, aktualizací, soukromí a
+  výkonu do jednoho přehledu.
+- Uchovává místní historii čištění a údržby.
+- Obsahuje české a anglické rozhraní, changelog v aplikaci a upozornění na nové
+  verze.
 
-## Bezpečnostní principy
+## Jak CoreCare chrání počítač
 
-1. Bez schválení uživatele se nic nemaže ani neopravuje.
-2. Integrita Windows a aplikací má přednost před uvolněným místem.
-3. Nejisté soubory se zobrazí ke kontrole a nevyberou se automaticky.
-4. Čištění používá Koš všude, kde je to možné.
-5. Instalace ovladačů začne pouze po úspěšné lokální záloze.
-6. Nástroje soukromí jsou volitelné a pracují jen s vybranými doménami.
+1. **Skenuje lokálně** bez změn v počítači.
+2. **Vysvětlí nález** a jeho riziko srozumitelným jazykem.
+3. **Vyžádá kontrolu** před čištěním, opravou, aktualizací nebo změnou spuštění.
+4. **Blokuje chráněná umístění** operačního systému a aplikací.
+5. **Upřednostňuje cestu zpět** přes Koš, zálohy a body obnovy balíčků.
 
-CoreCare záměrně neprovádí čištění registru, automatické systémové zásahy jedním kliknutím ani hromadné mazání historie a cookies.
-
-## Požadavky
-
-- 64bitový Windows 10 nebo Windows 11.
-- Připojení k internetu pro kontrolu aktualizací aplikace a ovladačů.
-- Potvrzení správce pro instalaci ovladačů a chráněné opravy Windows.
-
-Instalátor je self-contained; uživatel nemusí samostatně instalovat .NET SDK ani runtime.
-
-## Aktualizace
-
-Nainstalovaná aplikace používá [Velopack](https://velopack.io/) a kontroluje nové verze v tomto veřejném repozitáři. Balíček se stáhne až po rozhodnutí uživatele a instalaci provede aktualizační systém CoreCare.
-
-Od verze beta.81 se oficiální build před zabalením obfuskuje a release pipeline vyžaduje platný digitální podpis Windows. Podpis ověřuje původ a integritu souboru, ale nezaručuje nemožnost zpětné analýzy.
+CoreCare záměrně nečistí registry, nemaže bez rozlišení cookies či historii a
+neprovádí hromadné systémové změny jedním kliknutím.
 
 ## Soukromí
 
-CoreCare momentálně nevyžaduje účet, předplatné, reklamní identifikátor ani analytickou službu. Výsledky skenů a údržby zůstávají v počítači. Online připojení se používá pro kontrolu GitHub releases a uživatelem vyžádané operace Windows Update.
+CoreCare v současnosti nevyžaduje účet, předplatné, reklamní identifikátor ani
+analytickou službu. Seznamy souborů, výsledky skenů a historie aktivit zůstávají
+v počítači. Připojení k internetu se používá pro kontrolu nové verze aplikace a
+pro uživatelem vyžádané aktualizace operačního systému.
 
-Podrobnosti jsou v [PRIVACY.md](PRIVACY.md).
+Podrobnosti jsou uvedené v [PRIVACY.md](PRIVACY.md).
 
-## Omezení bety
+## Automatické aktualizace aplikace
 
-- Aktuální verze podporuje pouze Windows.
-- macOS a Linux jsou plánované, ale potřebují vlastní implementaci úložiště, aktualizací, startupu a oprav.
-- Mobilní systémy mají výrazně přísnější sandbox a nejsou součástí současné desktopové bety.
-- Hardwarová diagnostika, obnova jednotlivých ovladačů, odinstalace aplikací a detekce herních knihoven a uložených pozic se budou dále rozvíjet.
+CoreCare používá [Velopack](https://velopack.io/) a tento veřejný repozitář jako
+oficiální aktualizační kanál. Nainstalovaná aplikace může zjistit novou verzi,
+zobrazit poznámky k vydání, stáhnout správný balíček a restartovat se do
+aktualizace. Windows a Linux mají oddělené kanály, takže nelze zaměnit balíčky
+mezi platformami.
+
+## Stav platforem
+
+| Oblast | Windows | Linux |
+| --- | :---: | :---: |
+| Vedené čištění a ochrana systémových cest | Dostupné | Dostupné |
+| Kapacita disků a doporučení ke zdraví | Dostupné | Dostupné |
+| Aplikace po spuštění a využití prostředků | Dostupné | Dostupné |
+| Aktualizace ovladačů nebo systémových balíčků | Dostupné | Dostupné |
+| Místní obnova před aktualizací | Záloha ovladače | Bod obnovy balíčků |
+| Smart Cookie Cleanup se zálohou | Dostupné | Dostupné |
+| České a anglické rozhraní | Dostupné | Dostupné |
+
+Linuxová beta je automaticky ověřována na Ubuntu 22.04 a 24.04. Podpora dalších
+distribucí závisí na jejich desktopové integraci a dostupnosti nástrojů APT, DNF,
+Pacman nebo Zypper. macOS je plánovaný jako samostatná nativní implementace;
+mobilní platformy nejsou součástí současné desktopové bety.
 
 ## Podpora a bezpečnost
 
-- Běžné chyby a návrhy hlaste přes [GitHub Issues](https://github.com/jkaczmarczyk96-code/core-care-releases/issues).
-- U citlivých bezpečnostních problémů postupujte podle [SECURITY.md](SECURITY.md). Do veřejného issue nevkládejte přihlašovací údaje, osobní soubory ani podrobnosti zneužití.
-- Uveďte verzi CoreCare, verzi Windows, dotčenou část aplikace a postup reprodukce.
+- Běžné chyby a návrhy funkcí hlaste přes
+  [GitHub Issues](https://github.com/jkaczmarczyk96-code/core-care-releases/issues).
+- U bezpečnostních problémů postupujte podle [SECURITY.md](SECURITY.md).
+- Uveďte verzi CoreCare, operační systém, dotčenou část aplikace a postup, kterým
+  lze problém zopakovat.
+- Do veřejného issue nikdy nevkládejte přihlašovací údaje, soukromé dokumenty,
+  databáze cookies ani osobní výsledky skenu.
 
-## Zdrojový kód a licence
+## O tomto repozitáři
 
-Tento repozitář je oficiální veřejný kanál binárních verzí. Zdrojový repozitář CoreCare je privátní. Zveřejnění instalačních balíčků v tomto repozitáři neuděluje licenci ke zdrojovému kódu.
+Toto je oficiální veřejný repozitář binárních souborů a aktualizací CoreCare.
+Repozitář se zdrojovým kódem aplikace je soukromý. GitHub může u tagů automaticky
+nabízet archivy „Source code“; ty obsahují pouze veřejné soubory tohoto release
+repozitáře, nikoli soukromý zdrojový kód aplikace CoreCare.
+
+Přítomnost binárních souborů v tomto repozitáři neposkytuje licenci ke zdrojovému
+kódu.
 
 Copyright © přispěvatelé CoreCare. Všechna práva vyhrazena.
