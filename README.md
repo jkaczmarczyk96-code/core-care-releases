@@ -28,8 +28,8 @@ All official installers and update packages are available on the
 
 | Platform | Recommended download | Current public beta | Notes |
 | --- | --- | --- | --- |
-| Windows 10/11 x64 | `CoreCare-win-Setup.exe` | `0.1.0-beta.80` | Standard installer with Velopack updates. A portable ZIP is also available for testing. |
-| Linux x64 | `CoreCare.AppImage` | `0.1.0-beta.87-linux` | Self-contained AppImage with a dedicated Linux update channel. |
+| Windows 10/11 x64 | `CoreCare-win-Setup.exe` | `0.1.0-beta.83` | Velopack installer with automatic updates. The current beta is unsigned, so Windows may show a publisher warning. |
+| Linux x64 | `CoreCare.AppImage` | `0.1.0-beta.88-linux` | Self-contained AppImage with a dedicated Linux update channel. |
 
 ### Run on Linux
 
