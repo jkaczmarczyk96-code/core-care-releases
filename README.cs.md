@@ -29,8 +29,8 @@ Všechny oficiální instalátory a aktualizační balíčky najdete na stránce
 
 | Platforma | Doporučený soubor | Aktuální veřejná beta | Poznámka |
 | --- | --- | --- | --- |
-| Windows 10/11 x64 | `CoreCare-win-Setup.exe` | `0.1.0-beta.83` | Instalátor Velopack s automatickými aktualizacemi. Současná beta není podepsaná, proto může Windows zobrazit varování vydavatele. |
-| Linux x64 | `CoreCare.AppImage` | `0.1.0-beta.88-linux` | Samostatný AppImage s vlastním linuxovým aktualizačním kanálem. |
+| Windows 10/11 x64 | `CoreCare-win-Setup.exe` | `0.1.0-beta.89` | Instalátor Velopack s automatickými aktualizacemi. Současná beta není podepsaná, proto může Windows zobrazit varování vydavatele. |
+| Linux x64 | `CoreCare.AppImage` | `0.1.0-beta.93-linux` | Samostatný AppImage s vlastním linuxovým aktualizačním kanálem. |
 
 ### Spuštění na Linuxu
 
@@ -48,7 +48,7 @@ automatické aktualizace. Běžný uživatel je nemusí stahovat ani ručně ote
 
 ### Smart Cleaner
 
-- Skenuje jeden vybraný disk nebo všechny pevné disky.
+- Skenuje libovolnou uživatelem vybranou kombinaci pevných disků.
 - Nachází velké soubory, stará dočasná data, archivy, obrazy disků, cache a
   složky obsahující velké množství malých souborů.
 - Posuzuje každý výsledek podle kontextu, umístění, vlastníka, stáří, velikosti a
@@ -158,10 +158,33 @@ mezi platformami.
 | Smart Cookie Cleanup se zálohou | Dostupné | Dostupné |
 | České a anglické rozhraní | Dostupné | Dostupné |
 
-Linuxová beta je automaticky ověřována na Ubuntu 22.04 a 24.04. Podpora dalších
-distribucí závisí na jejich desktopové integraci a dostupnosti nástrojů APT, DNF,
-Pacman nebo Zypper. macOS je plánovaný jako samostatná nativní implementace;
-mobilní platformy nejsou součástí současné desktopové bety.
+## Kompatibilita linuxových distribucí
+
+Současný AppImage je určený pro **64bitový Linux na procesorech Intel/AMD
+(`linux-x64`)** s glibc a grafickým prostředím X11 nebo XWayland. Běhové prostředí
+.NET je součástí aplikace.
+
+| Rodina distribucí | Stav | Integrace CoreCare |
+| --- | --- | --- |
+| Ubuntu 22.04/24.04, Debian 12/13, Linux Mint, Pop!_OS, Zorin OS | Doporučené | APT a DPKG |
+| Fedora 42-44, RHEL 8-10, CentOS Stream 9/10 | Doporučené | DNF a RPM |
+| openSUSE Leap 16 | Doporučené | Zypper a RPM |
+| Arch Linux, Manjaro, EndeavourOS | Beta podpora | Pacman |
+| Ostatní desktopové distribuce s glibc | Vyžadují otestování | Podle dostupných systémových nástrojů |
+
+Immutable systémy jako Fedora Silverblue, Kinoite a SteamOS mohou omezit opravy
+balíčků a systémové změny. NixOS může vyžadovat `appimage-run` nebo kompatibilní
+FHS prostředí. Alpine/musl, zařízení ARM, Raspberry Pi a systémy bez grafického
+prostředí současný build nepodporuje.
+
+Desktop vyžaduje běžné knihovny X11. Administrátorské opravy používají PolicyKit
+s příkazem `pkexec`; hlubší diagnostika disků může využívat `findmnt`,
+`smartmontools` a `btrfs-progs`. Podrobnosti uvádějí
+[požadavky Avalonie pro Linux](https://docs.avaloniaui.net/docs/platform-specific-guides/linux)
+a [matice podpory .NET 9](https://github.com/dotnet/core/blob/main/release-notes/9.0/supported-os.md).
+
+macOS je plánovaný jako samostatná nativní implementace; mobilní platformy
+nejsou součástí současné desktopové bety.
 
 ## Podpora a bezpečnost
 

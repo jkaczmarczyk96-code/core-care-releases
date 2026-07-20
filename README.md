@@ -28,8 +28,8 @@ All official installers and update packages are available on the
 
 | Platform | Recommended download | Current public beta | Notes |
 | --- | --- | --- | --- |
-| Windows 10/11 x64 | `CoreCare-win-Setup.exe` | `0.1.0-beta.84` | Velopack installer with automatic updates. The current beta is unsigned, so Windows may show a publisher warning. |
-| Linux x64 | `CoreCare.AppImage` | `0.1.0-beta.89-linux` | Self-contained AppImage with a dedicated Linux update channel. |
+| Windows 10/11 x64 | `CoreCare-win-Setup.exe` | `0.1.0-beta.89` | Velopack installer with automatic updates. The current beta is unsigned, so Windows may show a publisher warning. |
+| Linux x64 | `CoreCare.AppImage` | `0.1.0-beta.93-linux` | Self-contained AppImage with a dedicated Linux update channel. |
 
 ### Run on Linux
 
@@ -48,7 +48,7 @@ them manually.
 
 ### Smart Cleaner
 
-- Scans one drive or all fixed drives.
+- Scans any user-selected combination of fixed drives.
 - Finds large files, old temporary data, archives, disk images, caches, and
   directories containing many small files.
 - Evaluates every result by context, location, ownership, age, size, and risk.
@@ -156,10 +156,32 @@ between platforms.
 | Smart Cookie Cleanup with backup | Available | Available |
 | Czech and English interface | Available | Available |
 
-The Linux beta is validated automatically on Ubuntu 22.04 and 24.04. Support for
-other distributions depends on their desktop integration and availability of
-APT, DNF, Pacman, or Zypper tools. macOS is planned as a separate native
-implementation; mobile platforms are not part of the current desktop beta.
+## Linux distribution compatibility
+
+The current AppImage targets **64-bit Intel/AMD Linux (`linux-x64`)** with
+glibc and a graphical X11 or XWayland desktop. The .NET runtime is bundled.
+
+| Distribution family | Status | CoreCare integration |
+| --- | --- | --- |
+| Ubuntu 22.04/24.04, Debian 12/13, Linux Mint, Pop!_OS, Zorin OS | Recommended | APT and DPKG |
+| Fedora 42-44, RHEL 8-10, CentOS Stream 9/10 | Recommended | DNF and RPM |
+| openSUSE Leap 16 | Recommended | Zypper and RPM |
+| Arch Linux, Manjaro, EndeavourOS | Beta support | Pacman |
+| Other glibc desktop distributions | Compatibility testing needed | Depends on available system tools |
+
+Immutable systems such as Fedora Silverblue, Kinoite, and SteamOS can restrict
+package repair and system modification. NixOS may require `appimage-run` or an
+FHS compatibility environment. Alpine/musl, ARM devices, Raspberry Pi, and
+headless systems are not supported by the current build.
+
+The desktop requires common X11 libraries. Administrator repairs use PolicyKit
+with `pkexec`; deeper disk diagnostics can use `findmnt`, `smartmontools`, and
+`btrfs-progs`. See the
+[Avalonia Linux requirements](https://docs.avaloniaui.net/docs/platform-specific-guides/linux)
+and the [.NET 9 support matrix](https://github.com/dotnet/core/blob/main/release-notes/9.0/supported-os.md).
+
+macOS is planned as a separate native implementation; mobile platforms are not
+part of the current desktop beta.
 
 ## Support and security
 
