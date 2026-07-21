@@ -29,8 +29,8 @@ Všechny oficiální instalátory a aktualizační balíčky najdete na stránce
 
 | Platforma | Doporučený soubor | Aktuální veřejná beta | Poznámka |
 | --- | --- | --- | --- |
-| Windows 10/11 x64 | `CoreCare-win-Setup.exe` | `0.1.0-beta.89` | Instalátor Velopack s automatickými aktualizacemi. Současná beta není podepsaná, proto může Windows zobrazit varování vydavatele. |
-| Linux x64 | `CoreCare.AppImage` | `0.1.0-beta.94-linux` | Samostatný AppImage s vlastním linuxovým aktualizačním kanálem. |
+| Windows 10/11 x64 | `CoreCare-win-Setup.exe` | `0.1.0-beta.90` | Instalátor Velopack s automatickými aktualizacemi. Současná beta není podepsaná, proto může Windows zobrazit varování vydavatele. |
+| Linux x64 | `CoreCare.AppImage` | `0.1.0-beta.96-linux` | Samostatný AppImage s vlastním linuxovým aktualizačním kanálem. |
 
 ### Spuštění na Linuxu
 
